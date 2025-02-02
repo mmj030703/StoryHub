@@ -1,0 +1,23 @@
+{
+  "name": "storyhub",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A full-stack MERN (MongoDB, Express.js, React.js, Node.js) application for managing image posts.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
+  "author": "Mayank M Jain",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "imagekit": "^6.0.0",
+    "mongoose": "^8.9.6",
+    "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}

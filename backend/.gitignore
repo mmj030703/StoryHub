@@ -1,0 +1,52 @@
+# Node.js and Package Managers
+node_modules
+package-lock.json
+npm-debug.log
+yarn-error.log
+
+# Environment Variables
+.env
+
+# Logs and Temporary Files
+*.log
+tmp/
+temp/
+*.tmp
+
+# Editor and IDE Files
+.idea/
+.vscode/
+*.swp
+*~
+*.swo
+
+# OS Specific Files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Deployment Specific (if applicable)
+.env.production  # Or similar production-specific env files
+
+# Optional: If you have specific files you don't want to track
+# my_secret_file.txt
+
+# Optional: If using Docker, exclude the .dockerignore file (usually not needed)
+# .dockerignore
+
+# Optional: If using a testing framework, exclude test reports
+# coverage/
+# reports/
+
+# Optional: If you have compiled files or build artifacts
+# build/
+# dist/
+
+# Optional: If you are using a process manager like PM2
+# .pm2*
+
+# Optional: If you use a local database file (use with extreme caution, never commit real data)
+# data.db  # Or the name of your database file
+
+# Optional: If you have any other sensitive information that should not be tracked
+# config.js # Or any other config file with sensitive info
