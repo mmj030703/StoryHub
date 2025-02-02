@@ -50,7 +50,6 @@ export async function getPostById(req, res) {
 export async function addPost(req, res) {
     try {
         const { title, description } = req.body;
-        console.log("title: ", title, description);
 
         if (!title || !description || title.trim() === "" || description.trim() === "") {
             return res.status(400).json({

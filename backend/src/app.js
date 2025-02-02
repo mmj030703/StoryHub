@@ -6,6 +6,7 @@ const app = express();
 // Configure CORS
 const corsOptions = {
     origin: [
+        "https://story-hub-6vd5.onrender.com",
         "http://localhost:5173"
     ],
     methods: ["GET", "POST", "PATCH", "DELETE"],
