@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Homepage from "./pages/Homepage.jsx";
+import UpdatePostPage from "./pages/UpdatePostPage.jsx";
 
 const PostPage = lazy(() => import("./pages/PostPage.jsx"));
 const AddPostPage = lazy(() => import("./pages/AddPostPage.jsx"));
@@ -30,6 +31,14 @@ const appRouter = createBrowserRouter([
         element: (
           <Suspense fallback={<h1>Loading...</h1>}>
             <AddPostPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/posts/update",
+        element: (
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <UpdatePostPage />
           </Suspense>
         ),
       },

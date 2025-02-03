@@ -1,12 +1,18 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Toaster from "../components/Toaster";
 
-function AddPostPage() {
+function UpdatePostPage() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const postData = {
+    id: searchParams.get("id"),
+    title: searchParams.get("title"),
+    description: searchParams.get("description"),
+  };
   const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    image: null,
+    title: postData.title,
+    description: postData.description,
+    image: "",
   });
   const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
@@ -55,17 +61,17 @@ function AddPostPage() {
       data.append(name, value);
     }
 
-    addPost(data);
+    updatePost(data);
   }
 
-  async function addPost(data) {
+  async function updatePost(data) {
     setLoader(true);
 
     try {
       const res = await fetch(
-        `https://storyhub-n1ne.onrender.com/api/v1/posts/add`,
+        `https://storyhub-n1ne.onrender.com/api/v1/posts/update/${postData.id}`,
         {
-          method: "POST",
+          method: "PATCH",
           headers: {
             Accept: "application/json",
           },
@@ -84,13 +90,12 @@ function AddPostPage() {
       }
 
       const post = await res.json();
-      console.log(post);
 
       if (post?.status === "success") {
-        showToast("Post Added Successfully !", "text-black", 1000);
+        showToast("Post Updated Successfully !", "text-black", 1000);
 
         setTimeout(() => {
-          navigate("/");
+          navigate(`/posts/${postData.id}`);
         }, 1000);
       }
     } catch (error) {
@@ -101,18 +106,18 @@ function AddPostPage() {
   }
 
   function validateFormData(data) {
-    if (!data.title || !data.description || !data.image) {
-      showToast("All fields are mandatory !", "text-red-500", 1000);
+    if (!data.title && !data.description && !data.image) {
+      showToast("Atleast one field should be updated !", "text-red-400", 1000);
       return true;
     }
 
     if (data.title.trim() === "") {
-      showToast("Title cannot be empty !", "text-red-400", 1000);
+      showToast("Title should not be empty !", "text-red-400", 1000);
       return true;
     }
 
     if (data.description.trim() === "") {
-      showToast("Description cannot be empty !", "text-red-400", 1000);
+      showToast("Description should not be empty !", "text-red-400", 1000);
       return true;
     }
 
@@ -132,8 +137,8 @@ function AddPostPage() {
   return (
     <section className="px-4 flex flex-col items-center mt-14 mb-14">
       <section className="shadow-2xl w-full min-[600px]:w-fit bg-slate-100 p-4">
-        <h1 className="text-[32px] font-bold">Add Post</h1>
-        <section className="w-full">
+        <h1 className="text-[32px] font-bold">Update Post</h1>
+        <section>
           <form
             onSubmit={handleSubmit}
             className="mt-4 flex flex-col gap-y-4 w-full">
@@ -149,6 +154,7 @@ function AddPostPage() {
                 autoComplete="off"
               />
             </fieldset>
+
             {/* description field */}
             <fieldset className="flex flex-col w-full min-[600px]:w-[500px]">
               <label className="text-[20px] font-semibold">Description</label>
@@ -161,6 +167,7 @@ function AddPostPage() {
                 autoComplete="off"
               />
             </fieldset>
+
             {/* postImage field */}
             <fieldset className="flex flex-col w-full min-[600px]:w-[500px]">
               <label className="text-[20px] font-semibold">Post Image</label>
@@ -175,11 +182,11 @@ function AddPostPage() {
             <article className="flex justify-start gap-x-4">
               <button
                 type="submit"
-                name="add"
+                name="update"
                 className="w-full mt-5 flex justify-center items-center
                   font-semibold text-[1.1rem] cursor-pointer text-white bg-blue-500
                   rounded-sm py-[7px]">
-                Add Post
+                Update Post
                 {loader && (
                   <span className="ml-3 animate-spin inline-block w-6 h-6 border-4 border-white border-t-slate-600 rounded-full"></span>
                 )}
@@ -188,7 +195,6 @@ function AddPostPage() {
           </form>
         </section>
       </section>
-
       {showToaster && (
         <Toaster text={toasterData.text} textClass={toasterData.textClass} />
       )}
@@ -196,4 +202,4 @@ function AddPostPage() {
   );
 }
 
-export default AddPostPage;
+export default UpdatePostPage;

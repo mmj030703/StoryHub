@@ -105,7 +105,7 @@ export async function addPost(req, res) {
         }
 
         res.status(201).send({
-            statusCode: "success",
+            status: "success",
             message: "Post created successfully !",
             data: post
         });
