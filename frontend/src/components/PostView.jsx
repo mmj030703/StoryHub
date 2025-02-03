@@ -76,7 +76,7 @@ function PostView({ post, showToast }) {
           />
         </figure>
         <article className="px-2 pt-2 pb-3 flex-1">
-          <h2 className="text-2xl font-semibold py-1">{title}</h2>
+          <h2 className="text-2xl font-semibold py-1 max-w-[400px]">{title}</h2>
           <article className="mt-3 bg-slate-300 px-2 rounded-md space-y-1 pt-1 pb-2">
             <p className="text-[15px] mt-1 font-semibold">
               {giveFormattedDate(createdAt)}
