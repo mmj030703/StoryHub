@@ -9,6 +9,5 @@ postRouter.get("/post/:id", getPostById);
 postRouter.post("/add", upload.single("image"), addPost);
 postRouter.patch("/update/:id", upload.single("image"), updatePostById);
 postRouter.delete("/delete/:id", deletePostById);
-postRouter.get("/render/reload", (req, res) => res.send("Reload"));
 
 export default postRouter;
